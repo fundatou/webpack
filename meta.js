@@ -44,7 +44,7 @@ module.exports = {
       type: 'string',
       required: false,
       message: 'Project description',
-      default: 'A Vue.js project',
+      default: 'KfptFe project',
     },
     author: {
       when: 'isNotTest',
@@ -66,6 +66,24 @@ module.exports = {
             'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
           value: 'runtime',
           short: 'runtime',
+        },
+      ],
+    },
+    projectType: {
+      when: 'isNotTest',
+      type: 'list',
+      message: 'Project Type',
+      choices: [
+        {
+          name: 'Project for mis',
+          value: 'mispro',
+          short: 'mispro',
+        },
+        {
+          name:
+            'Project for shop kepper',
+          value: 'shoppro',
+          short: 'shoppro',
         },
       ],
     },
@@ -170,6 +188,8 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/router/**/*': 'router',
+    'src/page/**/*': "projectType === 'mispro'",
+    'src/pageshop/**/*': "projectType === 'shoppro'",
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
